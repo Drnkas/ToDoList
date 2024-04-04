@@ -1,5 +1,4 @@
-
-import 'package:todo_list/models/task_model.dart';
+import '../models/task_model.dart';
 
 TaskModel task = TaskModel(
     id: 1,

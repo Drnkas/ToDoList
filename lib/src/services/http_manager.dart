@@ -9,7 +9,7 @@ abstract class HttpMethods {
 }
 
 class HttpManager {
-  Future<Map> restRequest({
+  Future restRequest({
     required String url,
     required String method,
     Map? headers,
@@ -18,9 +18,12 @@ class HttpManager {
     final defaultHeaders = headers?.cast<String, String>() ?? {}
       ..addAll({
         'content-type': 'application/json',
+        'accept': 'application/json',
       });
 
     Dio dio = Dio();
+    //dio.options.validateStatus = (_) => true;
+    dio.interceptors.add(LogInterceptor(responseBody: true));
 
     try {
       Response response = await dio.request(
@@ -34,9 +37,9 @@ class HttpManager {
 
       return response.data;
     } on DioException catch (error) {
-      return error.response?.data ?? {};
+      return error.response?.data ?? [];
     } catch (error) {
-      return {};
+      return [];
     }
   }
 }

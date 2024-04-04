@@ -6,15 +6,15 @@ abstract class Endpoints {
   static const String listCompleteTask = '$baseurl/todos?status=complete';
   static const String createTask = '$baseurl/todos';
 
-  static String viewTask(String id) {
+  static String viewTask(int id) {
     return '$baseurl/todos/$id';
   }
 
-  static String completeTask(String id) {
+  static String completeTask(int id) {
     return '$baseurl/todos/$id/complete';
   }
 
-  static String updateTask(String id) {
+  static String updateTask(int id) {
     return '$baseurl/todos/$id';
   }
 }
