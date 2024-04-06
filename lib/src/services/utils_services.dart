@@ -15,7 +15,7 @@ class UtilsServices {
   }
 
   String formatDateAndHour(String dateTimeString) {
-    DateTime dateTime = DateTime.parse(dateTimeString).toLocal().subtract(Duration(hours: 3));
+    DateTime dateTime = DateTime.parse(dateTimeString).toLocal().subtract(const Duration(hours: 3));
     String formattedDate = DateFormat('dd/MM/yyyy - HH:mm').format(dateTime);
     return formattedDate;
   }

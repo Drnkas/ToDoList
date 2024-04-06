@@ -22,8 +22,6 @@ class HttpManager {
       });
 
     Dio dio = Dio();
-    //dio.options.validateStatus = (_) => true;
-    dio.interceptors.add(LogInterceptor(responseBody: true));
 
     try {
       Response response = await dio.request(

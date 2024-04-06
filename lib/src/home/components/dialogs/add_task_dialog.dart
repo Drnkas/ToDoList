@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:signals/signals.dart';
 import 'package:signals/signals_flutter.dart';
 import 'package:todo_list/src/home/controller/home_controller.dart';
 import 'package:todo_list/src/models/task_model.dart';
@@ -92,21 +91,18 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
                 description: desc(),
               );
               homeController.createTask(task).then((_) {
-                String errorMessage = 'Tarefa criada com sucesso';
+                Navigator.of(context).pop();
                 Get.snackbar(
                     'Sucesso',
-                    errorMessage,
+                    'Tarefa criada com sucesso',
                     backgroundColor: AppColors.success,
-                    snackPosition: SnackPosition.TOP,
+                    snackPosition: SnackPosition.BOTTOM,
                     duration: const Duration(seconds: 2)
                 );
-
-                Navigator.of(context).pop();
               }).catchError((error) {
-                String errorMessage = 'Houve um erro ao criar tarefa';
                 Get.snackbar(
                   'Erro',
-                  errorMessage,
+                  'Houve um erro ao criar tarefa',
                   backgroundColor: Colors.red,
                   snackPosition: SnackPosition.TOP,
                 );

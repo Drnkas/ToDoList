@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:todo_list/src/home/controller/home_controller.dart';
 
 import '../../../config/app_colors.dart';
 import '../../../models/task_model.dart';
+import '../../controller/home_controller.dart';
 import '../dialogs/add_task_dialog.dart';
 import '../task_tile.dart';
 
-class PendingTasksListView extends StatefulWidget {
-  const PendingTasksListView({super.key});
+class AllTaskListView extends StatefulWidget {
+  const AllTaskListView({super.key});
 
   @override
-  State<PendingTasksListView> createState() => _PendingTasksListViewState();
+  State<AllTaskListView> createState() => _AllTaskListViewState();
 }
 
-class _PendingTasksListViewState extends State<PendingTasksListView> {
+class _AllTaskListViewState extends State<AllTaskListView> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -27,7 +27,7 @@ class _PendingTasksListViewState extends State<PendingTasksListView> {
           ),
         );
       } else {
-        if (controller.pendingTasks.isEmpty) {
+        if (controller.allTasks.isEmpty) {
           return Center(
             child: SingleChildScrollView(
               child: Column(
@@ -39,17 +39,17 @@ class _PendingTasksListViewState extends State<PendingTasksListView> {
                     width: 280,
                     height: 280,
                   ),
-              
+
                   //Title
                   Text(
-                    'Nenhuma tarefa por aqui!',
-                    style: GoogleFonts.leagueSpartan(
-                    fontSize: 20,
-                    color: AppColors.details,
-                  )),
+                      'Sem tarefas por aqui',
+                      style: GoogleFonts.leagueSpartan(
+                        fontSize: 20,
+                        color: AppColors.details,
+                      )),
                   const SizedBox(height: 20),
-              
-                  //Add task button
+
+                  //Add Task button
                   ElevatedButton.icon(
                     onPressed: () {
                       showDialog(
@@ -77,9 +77,9 @@ class _PendingTasksListViewState extends State<PendingTasksListView> {
           );
         } else {
           return ListView.builder(
-            itemCount: controller.pendingTasks.length,
+            itemCount: controller.allTasks.length,
             itemBuilder: (context, index) {
-              final task = controller.pendingTasks[index];
+              final task = controller.allTasks[index];
               return TaskTile(
                 task: task,
               );

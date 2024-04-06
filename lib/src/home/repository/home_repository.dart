@@ -12,7 +12,6 @@ class HomeRepository {
           url: Endpoints.listPendingTask,
           method: HttpMethods.get
       );
-
       if (response.isNotEmpty) {
         final tasks = <TaskModel>[];
 

@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../config/app_colors.dart';
 import '../../models/task_model.dart';
 import '../../services/utils_services.dart';
+import '../controller/home_controller.dart';
 import 'dialogs/confirm_task_dialog.dart';
 import 'dialogs/edit_task_dialog.dart';
 
 class TaskTile extends StatefulWidget {
   final TaskModel task;
-  final Function(TaskModel) onDelete;
-  const TaskTile({super.key, required this.task, required this.onDelete});
+  const TaskTile({super.key, required this.task});
 
   @override
   State<TaskTile> createState() => _TaskTileState();
@@ -18,6 +19,7 @@ class TaskTile extends StatefulWidget {
 
 class _TaskTileState extends State<TaskTile> {
   final UtilsServices utilsServices = UtilsServices();
+  final homeController = Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,6 @@ class _TaskTileState extends State<TaskTile> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(22),
         ),
-        color: widget.task.status == 'complete' ? Colors.lightGreen[100] : null,
         surfaceTintColor: Colors.white,
         elevation: 5,
         child: Padding(
@@ -35,7 +36,7 @@ class _TaskTileState extends State<TaskTile> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
+              SizedBox(
                 height: 70,
                 child: Checkbox(
                   activeColor: AppColors.success,
@@ -74,27 +75,26 @@ class _TaskTileState extends State<TaskTile> {
                 ),
               ),
               const SizedBox(width: 8),
-
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-
                     //Title
                     Text(
                       widget.task.description!,
                       style: GoogleFonts.nunito(
                         textStyle: TextStyle(
                           fontSize: 17,
-                          color: AppColors.details,
+                          color: widget.task.status == 'complete'
+                              ? Colors.grey
+                              : AppColors.details,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
-                    const SizedBox(height:4),
+                    const SizedBox(height: 4),
                     Row(
                       children: [
-
                         //Status
                         Icon(
                           Icons.lightbulb_circle_outlined,
@@ -109,7 +109,9 @@ class _TaskTileState extends State<TaskTile> {
                             style: GoogleFonts.leagueSpartan(
                               textStyle: TextStyle(
                                 fontSize: 14,
-                                color: AppColors.details,
+                                color:  widget.task.status == 'complete'
+                                    ? Colors.grey
+                                    : AppColors.details,
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
@@ -119,7 +121,6 @@ class _TaskTileState extends State<TaskTile> {
                     ),
                     Row(
                       children: [
-
                         //CreatedAt
                         Padding(
                           padding: const EdgeInsets.only(bottom: 8.0),
@@ -137,7 +138,9 @@ class _TaskTileState extends State<TaskTile> {
                             style: GoogleFonts.leagueSpartan(
                               textStyle: TextStyle(
                                 fontSize: 14,
-                                color: AppColors.text,
+                                color: widget.task.status == 'complete'
+                                    ? Colors.grey
+                                    : AppColors.text,
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
@@ -151,7 +154,6 @@ class _TaskTileState extends State<TaskTile> {
               Row(
                 children: [
                   if (widget.task.status != 'complete')
-
                   //Edit Button
                     Padding(
                       padding: const EdgeInsets.only(top: 15),
@@ -169,13 +171,12 @@ class _TaskTileState extends State<TaskTile> {
                         ),
                       ),
                     ),
-
                   //Delete button
                   Padding(
                     padding: const EdgeInsets.only(top: 15),
                     child: IconButton(
                       onPressed: () {
-                        widget.onDelete(widget.task);
+                        homeController.deleteTask(widget.task);
                       },
                       icon: Icon(
                         Icons.delete_outline_outlined,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:signals/signals_flutter.dart';
-import 'package:signals/signals.dart';
 import 'package:todo_list/src/home/controller/home_controller.dart';
 import '../../../config/app_colors.dart';
 import '../../../models/task_model.dart';
@@ -10,7 +9,7 @@ import '../../../models/task_model.dart';
 class EditTaskDialog extends StatefulWidget {
   final TaskModel task;
 
-  const EditTaskDialog({Key? key, required this.task}) : super(key: key);
+  const EditTaskDialog({super.key, required this.task});
 
   @override
   State<EditTaskDialog> createState() => _EditTaskDialogState();
@@ -112,11 +111,10 @@ class _EditTaskDialogState extends State<EditTaskDialog> {
                     'Tarefa atualizada com sucesso!',
                     backgroundColor: AppColors.success,
                     snackPosition: SnackPosition.BOTTOM,
-                    duration: Duration(seconds: 3)
+                    duration: const Duration(seconds: 3)
                 );
                 Navigator.of(context).pop();
-              })
-                  .catchError((error) {
+              }).catchError((error) {
                 Get.snackbar(
                   'Erro',
                   'Houve um erro ao atualizar a tarefa',
