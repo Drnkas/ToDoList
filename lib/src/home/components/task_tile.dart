@@ -87,7 +87,7 @@ class _TaskTileState extends State<TaskTile> {
                           fontSize: 17,
                           color: widget.task.status == 'complete'
                               ? Colors.grey
-                              : AppColors.details,
+                              : Colors.black,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
