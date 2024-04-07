@@ -49,14 +49,26 @@ class _EditTaskDialogState extends State<EditTaskDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Editar Tarefa'),
+      title: Align(
+        alignment: Alignment.center,
+        child: Text(
+            'Editar Tarefa',
+          style: GoogleFonts.leagueSpartan(
+            textStyle: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500
+            ),
+          ),
+        ),
+      ),
       content: TextField(
+        maxLines: null,
         cursorColor: AppColors.primary,
         controller: _textEditingController,
         onChanged: desc.set,
         decoration: InputDecoration(
           hintText: 'Digite a descrição da tarefa...',
-          hintStyle: TextStyle(color: AppColors.details),
+          hintStyle: TextStyle(color: AppColors.text),
           focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: AppColors.primary),
           ),

@@ -25,14 +25,22 @@ class ConfirmTaskDialog extends StatelessWidget {
                 color: Colors.black,
               ),
               children: [
-                const TextSpan(
+                TextSpan(
                   text: 'Concluir tarefa\n\n',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
+                    style: GoogleFonts.leagueSpartan(
+                      textStyle: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500
+                      ),
+                    ),
                 ),
                 TextSpan(
                   text: tasks.description!,
+                  style: GoogleFonts.leagueSpartan(
+                    textStyle: const TextStyle(
+                      fontSize: 18,
+                    ),
+                  )
                 ),
               ],
             ),

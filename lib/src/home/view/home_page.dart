@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
 
               //TabBar
               TabBar(
-                splashBorderRadius: BorderRadius.circular(35),
+                splashBorderRadius: BorderRadius.circular(40),
                 tabAlignment: TabAlignment.center,
                 labelPadding: const EdgeInsets.symmetric(horizontal: 20),
                 dividerColor: AppColors.background,
