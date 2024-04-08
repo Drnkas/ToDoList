@@ -157,11 +157,20 @@ class HomeController extends GetxController{
     }
   }
 
-  void deleteTask(TaskModel task) {
-    pendingTasks.removeWhere((t) => t.id == task.id);
-    completeTasks.removeWhere((t) => t.id == task.id);
-    allTasks.removeWhere((t) => t.id == task.id);
-    update();
+  void deleteTask(TaskModel task) async {
+    try {
+      setLoading(true);
+      await homeRepository.deleteTask(task: task);
+
+      pendingTasks.removeWhere((t) => t.id == task.id);
+      completeTasks.removeWhere((t) => t.id == task.id);
+      allTasks.removeWhere((t) => t.id == task.id);
+
+      setLoading(false);
+      update();
+    } catch (e) {
+      print('Erro ao excluir a tarefa: $e');
+    }
   }
 
 }

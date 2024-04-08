@@ -6,7 +6,7 @@ abstract class Endpoints {
   static const String listCompleteTask = '$baseurl/todos?status=complete';
   static const String createTask = '$baseurl/todos';
 
-  static String viewTask(int id) {
+  static String deleteTask(int id) {
     return '$baseurl/todos/$id';
   }
 

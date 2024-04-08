@@ -110,4 +110,16 @@ class HomeRepository {
     }
   }
 
+  Future<void> deleteTask({required TaskModel task}) async {
+    try{
+      await _httpManager.restRequest(
+        url: Endpoints.deleteTask(task.id!),
+        method: HttpMethods.delete,
+      );
+
+    }catch (e){
+      rethrow;
+    }
+  }
+
 }
