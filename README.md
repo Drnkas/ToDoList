@@ -1,9 +1,5 @@
 # TaskList - Gerenciador de Tarefas
 
-<p align="center">
-  <img alt="TaskList" src="assets/images/logofull.png" width="200px">
-</p>
-
 ## 💡 Sobre o Projeto
 
 Este aplicativo foi desenvolvido como forma de aprendizado, utilizando uma API para gerenciar uma lista de tarefas (TaskList). O **TaskList** permite que os usuários cadastrem itens, marquem tarefas como concluídas, e visualizem as listas organizadas em três categorias diferentes: **todas as tarefas**, **tarefas pendentes**, e **tarefas concluídas**.
